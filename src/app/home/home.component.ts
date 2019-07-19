@@ -12,7 +12,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
   templateUrl: 'home.component.html' 
   })
 export class HomeComponent {
-    //displayedColumns = ['id', 'name', 'progress', 'color'];
+    displayedColumns = ['id', 'name', 'progress', 'color'];
     loading = false;
     users: User[];
 
