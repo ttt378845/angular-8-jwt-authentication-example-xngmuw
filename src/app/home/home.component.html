@@ -1,10 +1,142 @@
-<div class="card mt-4">
-    <h4 class="card-header">You're logged in with Angular 8 & JWT!!</h4>
-    <div class="card-body">
-        <h6>Users from secure api end point</h6>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
+<mat-tab-group>
+  <mat-tab label="One">
+    <h1>Some tab content</h1>
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <div class="example-container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.phone}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+          </ng-container>
+
+          <!-- company Column -->
+          <ng-container matColumnDef="company">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Company </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.company}} </mat-cell>
+          </ng-container>
+
+          <!-- email Column -->
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="date_entry">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Entry Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.date_entry}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="org_num">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> org_num </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.org_num}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="address_1">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.address_1}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="city">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> city </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.city}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="zip">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> zip </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.zip}} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="geo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> geo </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.geo}} </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="pan">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> pan </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.pan}} </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="pin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> pin </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.pin}} </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> status </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="fee">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> fee </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.fee}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="date_exit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> date_exit </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.date_exit}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="date_first">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> date_first </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.date_first}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="date_recent">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> date_recent </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.date_recent}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="url">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> url </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.url}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Action </th>   
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-raised-button color="primary">POST</button> 
+            </td>
+          </ng-container>
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
     </div>
-</div>
+  </mat-tab>
+  <mat-tab label="Two">
+    <h1>Some more tab content</h1>
+    <div class="card mt-4">
+      <h4 class="card-header">You're logged in with Angular 8 & JWT!!</h4>
+      <div class="card-body">
+          <h6>Users from secure api end point</h6>
+          <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+          <ul *ngIf="users">
+              <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+          </ul>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
